@@ -6,9 +6,10 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions( plugin = {"pretty","html:target/htmlreports"}, 
-				features = "src/test/resources/seleniumeasy/otherstabfeature.feature", 
+				features = "src/test/resources/seleniumeasy", 
 				glue= "seleniumeasy.cucumber", 
-				tags="@otherstab" )
+				tags = {"@otherstab","@InputForm"}
+			)
 public class RunCucumberTest {
 
 }
