@@ -11,7 +11,8 @@ import java.util.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+//import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -22,8 +23,8 @@ public class StepDefinitions {
 
 	@Given("^I am able to launch the site$")
 	public void i_am_able_to_launch_the_site() {
-		System.setProperty("webdriver.chrome.driver", "C://Users//palak//Downloads//chromedriver.exe");
-		driver=new ChromeDriver();
+		System.setProperty("webdriver.gecko.driver", "C://Users//palak//Downloads//geckodriver.exe");
+		driver=new FirefoxDriver();
 	    driver.get("https://www.seleniumeasy.com/test/");
 	    driver.manage().window().maximize();
 	    WebDriverWait wait = new WebDriverWait(driver, 20);
@@ -92,28 +93,28 @@ public class StepDefinitions {
 		 }
 		 else System.out.println("Fail");
 	}
-//	@When("^I drag and drop an item to the drop here box$")
-//	public void i_drag_and_drop_an_item_to_the_drop_here_box() {
-//		WebElement dragged = driver.findElement(By.xpath("//*[@id=\"todrag\"]/span[1]"));
-//    WebElement dropped = driver.findElement(By.xpath("//*[@id=\"mydropzone\"]"));
-//    Actions builder = new Actions(driver);
-//    builder.dragAndDrop(dragged, dropped).build().perform();
-//		
-//	}
+	@When("^I drag and drop an item to the drop here box$")
+	public void i_drag_and_drop_an_item_to_the_drop_here_box() {
+		WebElement dragged = driver.findElement(By.xpath("//*[@id=\"todrag\"]/span[1]"));
+    WebElement dropped = driver.findElement(By.xpath("//*[@id=\"mydropzone\"]"));
+    Actions builder = new Actions(driver);
+    builder.dragAndDrop(dragged, dropped).build().perform();
+		
+	}
 
-//	@Then("^I verify The draggable is displayed on the dropped items list$")
-//	public void i_verify_the_draggable_is_displayed_on_the_dropped_items_list() {
-//		if(driver.findElement(By.xpath("//div[@id=\"droppedlist\"]/child::span")).isDisplayed()) {
-//			 System.out.println("Pass");
-//		 }
-//		 else System.out.println("Fail");
-//	}
-//
-//	@Then("^I verify the same draggable dsplayed which was dropped$")
-//	public void i_verify_the_same_draggable_dsplayed_which_was_dropped() {
-//	   List<WebElement> checker=driver.findElements(By.xpath("//div[@class=\"w25 moveleft\"]/child::span"));
-//	   System.out.println(checker.size());
-//	}
+	@Then("^I verify The draggable is displayed on the dropped items list$")
+	public void i_verify_the_draggable_is_displayed_on_the_dropped_items_list() {
+		if(driver.findElement(By.xpath("//div[@id=\"droppedlist\"]/child::span")).isDisplayed()) {
+			 System.out.println("Pass");
+		 }
+		 else System.out.println("Fail");
+	}
+
+	@Then("^I verify the same draggable dsplayed which was dropped$")
+	public void i_verify_the_same_draggable_dsplayed_which_was_dropped() {
+	   List<WebElement> checker=driver.findElements(By.xpath("//div[@class=\"w25 moveleft\"]/child::span"));
+	   System.out.println(checker.size());
+	}
 	@Given("^I verify that a button named get new user under the Loading the data dynamically is present$")
 	public void i_verify_that_a_button_named_get_new_user_under_the_loading_the_data_dynamically_is_present() {
 		if((driver.findElement(By.xpath("//*[@id=\"easycont\"]/div/div[2]/h3")).isDisplayed())&&(driver.findElement(By.xpath("//*[@id=\"save\"]")).isDisplayed())) {
@@ -129,7 +130,8 @@ public void i_click_the_get_new_user_button() {
 
 @Then("^I verify getting a new User and name and photo$")
 public void i_verify_getting_a_new_user_and_name_and_photo() {
-	if((driver.findElement(By.xpath("//*[@id=\"loading\"]/text()[1]")).isDisplayed())&&(driver.findElement(By.xpath("//*[@id='loading']/img")).isDisplayed())&&(driver.findElement(By.xpath("//*[@id=\"loading\"]/text()[2]")).isDisplayed())) {
+	WebElement element=new WebDriverWait(driver,20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='loading']/img")));
+	if((element.isDisplayed())&&(driver.findElement(By.xpath("//*[@id=\"loading\"]/text()[1]")).isDisplayed())&&(driver.findElement(By.xpath("//*[@id=\"loading\"]/text()[2]")).isDisplayed())) {
 		 System.out.println("Pass");
 	 }
 	 else System.out.println("Fail");
@@ -137,9 +139,12 @@ public void i_verify_getting_a_new_user_and_name_and_photo() {
 
 @Given("^I verify display of data transfer block on the page$")
 public void i_verify_display_of_data_transfer_block_on_the_page() {
-	if((driver.findElement(By.xpath("//*[@id=\"pie-chart-widget\"]")).isDisplayed())) {
+	WebElement element=new WebDriverWait(driver,20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"pie-chart-widget\"]")));
+	if(element.isDisplayed()) {
 		 System.out.println("Pass");
 	 }
+	
+	
 	 else System.out.println("Fail");
 }
 

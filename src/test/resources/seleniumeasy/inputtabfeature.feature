@@ -1,4 +1,4 @@
-@InputForm
+
 Feature: Test Input Forms tab
 
   #Scenario: 01 Test seven drop-down options after clicking input forms tab

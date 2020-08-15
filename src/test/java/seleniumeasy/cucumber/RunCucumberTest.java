@@ -1,15 +1,20 @@
 package seleniumeasy.cucumber;
 
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
-import org.junit.runner.RunWith;
+//import io.cucumber.junit.Cucumber;
+//import cucumber.api.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
+//import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.TestNGCucumberRunner;
 
-@RunWith(Cucumber.class)
-@CucumberOptions( plugin = {"pretty","html:target/htmlreports"}, 
+//import org.junit.runner.RunWith;
+
+//@RunWith(Cucumber.class)
+@CucumberOptions( plugin = {"usage","html:target/htmlreports-others.html"}, 
 				features = "src/test/resources/seleniumeasy", 
 				glue= "seleniumeasy.cucumber", 
-				tags = {"@otherstab","@InputForm"}
+				tags = "@otherstab",
+				monochrome=true
 			)
-public class RunCucumberTest {
-
+public class RunCucumberTest  {
+	TestNGCucumberRunner abc;
 }

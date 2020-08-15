@@ -61,10 +61,9 @@ Feature: Test Others tab
     And I verify items to drag is displayed
     And I verify that drop here is displayed
     And I verify that dropped items list is visible
-
-  #When I drag and drop an item to the drop here box
-  #Then I verify The draggable is displayed on the dropped items list
-  #And I verify the same draggable dsplayed which was dropped
+  When I drag and drop an item to the drop here box
+  Then I verify The draggable is displayed on the dropped items list
+  And I verify the same draggable dsplayed which was dropped
   
   Scenario: 07 Test the Dynamic data loading option
     Given I am able to launch the site
