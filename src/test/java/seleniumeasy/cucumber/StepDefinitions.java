@@ -19,7 +19,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class StepDefinitions {
 	
-	    WebDriver driver;
+	     WebDriver driver;
 
 	@Given("^I am able to launch the site$")
 	public void i_am_able_to_launch_the_site() {
@@ -49,8 +49,6 @@ public class StepDefinitions {
 	public void i_verify_values_are_getting_displayed(String str) {
 		 boolean status = driver.findElement(By.linkText(str)).isDisplayed();
 		 Assert.assertEquals(true, status);
-		//List<WebElement> dropdown= driver.findElements(By.linkText("Others"));
-	 // System.out.println("Size is"+dropdown.size());
 	}
 	@When("^I click on (.*) in the drop down menu$")
 	public void i_click_on_an_item_in_the_drop_down_menu(String str) {
@@ -98,7 +96,7 @@ public class StepDefinitions {
 		WebElement dragged = driver.findElement(By.xpath("//*[@id=\"todrag\"]/span[1]"));
     WebElement dropped = driver.findElement(By.xpath("//*[@id=\"mydropzone\"]"));
     Actions builder = new Actions(driver);
-    builder.dragAndDrop(dragged, dropped).build().perform();
+    builder.dragAndDrop(dragged, dropped).perform();
 		
 	}
 

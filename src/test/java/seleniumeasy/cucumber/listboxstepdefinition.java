@@ -16,13 +16,13 @@ import io.cucumber.java.en.When;
 
 public class listboxstepdefinition {
 	WebDriver driver;
-
+	WebDriverWait wait=null;
 	@Given("^I login to the application$")
 	public void i_login_to_the_application() throws Throwable {
 		System.setProperty("webdriver.chrome.driver", "C://Users//palak//Downloads//chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.get("https://www.seleniumeasy.com/test/");
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		 wait = new WebDriverWait(driver, 20);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\'at-cv-lightbox-button-holder\']/a[2]")))
 				.click();
 	}
@@ -46,7 +46,7 @@ public class listboxstepdefinition {
 		driver.findElement(By.xpath("//ul[@class='dropdown-menu']//a[contains(text(),'Bootstrap List Box')]")).click();
 	}
 
-	@When("^I select (.*) from list$")
+	@When("^I select (.*) from a list$")
 	public void i_select_some_results_bootstrap_duallist(String str) throws Throwable {
 		List<WebElement> liElements=driver.findElements(By.xpath("//div[@class='well text-right']//li[@class='list-group-item']"));
 		for(int i=0;i<liElements.size();i++) {
@@ -76,100 +76,39 @@ public class listboxstepdefinition {
 		driver.close();
 	}
 
-	@Then("^I verify the resultsDapibus ac facilisis in are shifted$")
-	public void i_verify_the_resultsDapibus_ac_facilisis_in_are_shifted() throws Throwable {
-		WebElement second = driver.findElement(
-				By.xpath("//li[@class='list-group-item active'][contains(text(),'Dapibus ac facilisis in')]"));
-		Assert.assertEquals(true, second.isDisplayed());
-		driver.close();
-	}
+	
 
 	@Given("^I click on data list filter tab$")
 	public void i_click_on_data_list_filter_tab() throws Throwable {
 		driver.findElement(By.xpath("//ul[@class='dropdown-menu']//a[contains(text(),'Data List Filter')]")).click();
 	}
 
-	@Given("^I enter a value Tyreese Burn$")
-	public void i_enter_a_value_Tyreese_Burn() throws Throwable {
+	@Given("^I enter a value (.*) in box$")
+	public void i_enter_a_value_Tyreese_Burn(String str) throws Throwable {
 		Object search = driver.findElement(By.xpath("//div[@class='col-lg-12']//input[@id='input-search']"));
-		((WebElement) search).sendKeys("Tyreese Burn");
+		((WebElement) search).sendKeys(str);
 	}
 
-	@Then("^I verify the resultsTyreese Burn are shown$")
-	public void i_verify_the_resultsTyreese_Burn_are_shown() throws Throwable {
+	@Then("^I verify the results (.*) are shown$")
+	public void i_verify_the_resultsTyreese_Burn_are_shown(String str) throws Throwable {
 
-		List<WebElement> textDemo = driver.findElements(By.xpath("//*[contains(text(),'Tyreese Burn')]"));
+		List<WebElement> textDemo = driver.findElements(By.xpath("//*[contains(text(),'"+str+"')]"));
 		System.out.println("Number of web elements: " + textDemo.size());
 		if (textDemo.size() > 0) {
 			System.out.println("element Tyreese Burn is present");
 		} else {
 			System.out.println("element Tyreese Burn is absent");
 		}
-		driver.close();
+//		driver.close();
 	}
-
-	@Given("^I enter a value manager$")
-	public void i_enter_a_value_manager() throws Throwable {
-		Object search = driver.findElement(By.xpath("//div[@class='col-lg-12']//input[@id='input-search']"));
-		((WebElement) search).sendKeys("manager");
-	}
-
-	@Then("^I verify the resultsmanager are shown$")
-	public void i_verify_the_resultsmanager_are_shown() throws Throwable {
-		List<WebElement> textDemo = driver.findElements(By.xpath("//*[contains(text(),'Manager')]"));
-		System.out.println("Number of web elements: " + textDemo.size());
-		if (textDemo.size() > 0) {
-			System.out.println("element manager is present");
-		} else {
-			System.out.println("element manager is absent");
-		}
-		driver.close();
-	}
-
-	@Given("^I enter a value (\\d+)-(\\d+)-(\\d+)$")
-	public void i_enter_a_value(int arg1, int arg2, int arg3) throws Throwable {
-		Object search = driver.findElement(By.xpath("//div[@class='col-lg-12']//input[@id='input-search']"));
-		((WebElement) search).sendKeys("980-543-3333");
-	}
-
-	@Then("^I verify the results(\\d+)-(\\d+)-(\\d+) are shown$")
-	public void i_verify_the_results_are_shown(int arg1, int arg2, int arg3) throws Throwable {
-		List<WebElement> textDemo = driver.findElements(By.xpath("//*[contains(text(),'980-543-3333')]"));
-		System.out.println("Number of web elements: " + textDemo.size());
-		if (textDemo.size() > 0) {
-			System.out.println("element 980-543-3333 is present");
-		} else {
-			System.out.println("element 980-543-3333 is absent");
-		}
-		driver.close();
-	}
-
-	@Given("^I enter a value test(\\d+)@company\\.com$")
-	public void i_enter_a_value_test_company_com(int arg1) throws Throwable {
-		Object search = driver.findElement(By.xpath("//div[@class='col-lg-12']//input[@id='input-search']"));
-		((WebElement) search).sendKeys("test5@company.com");
-	}
-
-	@Then("^I verify the resultstest(\\d+)@company\\.com are shown$")
-	public void i_verify_the_resultstest_company_com_are_shown(int arg1) throws Throwable {
-		List<WebElement> textDemo = driver.findElements(By.xpath("//*[contains(text(),'test5@company.com')]"));
-		System.out.println("Number of web elements: " + textDemo.size());
-		if (textDemo.size() > 0) {
-			System.out.println("element test5@company.com is present");
-		} else {
-			System.out.println("element test5@company.com is absent");
-		}
-		driver.close();
-	}
-
 	@Given("^I click on JQuery$")
 	public void i_click_on_JQuery() throws Throwable {
 		driver.findElement(By.xpath("//ul[@class='dropdown-menu']//a[contains(text(),'JQuery List Box')]")).click();
 	}
 
-	@Given("^I select a result Alice$")
-	public void i_select_a_result_Alice() throws Throwable {
-		driver.findElement(By.xpath("//option[contains(text(),'Alice')]")).click();
+	@Given("^I select a result (.*) from list$")
+	public void i_select_a_result_Alice(String str) throws Throwable {
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//option[contains(text(),'"+str+"')]"))).click();
 	}
 
 	@Given("^I click on Add button$")
@@ -177,43 +116,22 @@ public class listboxstepdefinition {
 		driver.findElement(By.xpath("//button[@class='pAdd btn btn-primary btn-sm']")).click();
 	}
 
-	@Then("^I verify result Alice is added$")
-	public void i_verify_result_Alice_is_added() throws Throwable {
+	@Then("^I verify result (.*) is added$")
+	public void i_verify_result_Alice_is_added(String ste) throws Throwable {
 		try {
-			WebElement third = driver.findElement(By.xpath(
-					"//select[@class='form-control pickListSelect pickListResult']//option[contains(text(),'Alice')]"));
+			WebElement third = driver.findElement(By.xpath("//select[@class='form-control pickListSelect pickListResult']//option[contains(text(),'"+ste+"')]"));
 			Assert.assertEquals(true, third.isDisplayed());
 		} catch (AssertionError e) {
-			System.out.println("Alice is absent");
+			System.out.println(ste+" is absent");
 			throw e;
 		}
-		System.out.println("Alice is present");
+		System.out.println(ste+" is present");
 
 	}
 
-	@Given("^I select a result Isabella$")
-	public void i_select_a_result_Isabella() throws Throwable {
-		driver.findElement(By.xpath("//option[contains(text(),'Isabella')]")).click();
-	}
-
-	@Then("^I verify result Isabella is added$")
-	public void i_verify_result_Isabella_is_added() throws Throwable {
-		try {
-			WebElement fourth = driver.findElement(By.xpath(
-					"//select[@class='form-control pickListSelect pickListResult']//option[contains(text(),'Isabella')]"));
-			Assert.assertEquals(true, fourth.isDisplayed());
-		} catch (AssertionError e) {
-			System.out.println("Isabella is absent");
-			throw e;
-		}
-		System.out.println("Isabella is present");
-
-	}
-
-	@When("^I select a resultAlice$")
-	public void i_select_a_resultAlice() throws Throwable {
-		driver.findElement(By.xpath(
-				"//select[@class='form-control pickListSelect pickListResult']//option[contains(text(),'Alice')]")).click();
+	@When("^I select a result (.*) from second list$")
+	public void i_select_a_resultAlice(String str) throws Throwable {
+		driver.findElement(By.xpath("//select[@class='form-control pickListSelect pickListResult']//option[contains(text(),'"+str+"')]")).click();
 	}
 
 	@When("^I click on remove$")
@@ -221,35 +139,18 @@ public class listboxstepdefinition {
 		driver.findElement(By.xpath("//button[@class='pRemove btn btn-primary btn-sm']")).click();
 	}
 
-	@Then("^I verify the element Aliceis removed$")
-	public void i_verify_the_element_Aliceis_removed() throws Throwable {
-		List elements =driver.findElements(By.xpath("//select[@class='form-control pickListSelect pickListResult']//option[contains(text(),'Alice')]"));
+	@Then("^I verify the element (.*) is removed$")
+	public void i_verify_the_element_Aliceis_removed(String ste) throws Throwable {
+		List<WebElement> elements =driver.findElements(By.xpath("//select[@class='form-control pickListSelect pickListResult']//option[contains(text(),'"+ste+"')]"));
 		if(elements.size()==0){
-		    System.out.println("Element Alice has been removed");
+		    System.out.println("Element"+ste+" has been removed");
 
 		 } else {
-		    System.out.println("Alice has not been removed");
+		    System.out.println(ste+" has not been removed");
 		 }
 		driver.close();
 	}
 
-	@When("^I select a resultIsabella$")
-	public void i_select_a_resultIsabella() throws Throwable {
-		driver.findElement(By.xpath(
-				"//select[@class='form-control pickListSelect pickListResult']//option[contains(text(),'Isabella')]")).click();
-	}
-
-	@Then("^I verify the element Isabellais removed$")
-	public void i_verify_the_element_Isabellais_removed() throws Throwable {
-		List elements =driver.findElements(By.xpath("//select[@class='form-control pickListSelect pickListResult']//option[contains(text(),'Isabella')]"));
-		if(elements.size()==0){
-		    System.out.println("Element Isabella has been removed");
-
-		 } else {
-		    System.out.println("Isabella has not been removed");
-		 }
-		driver.close();
-	}
 	
 	@When("^I click on addall button$")
 	public void i_click_on_addall_button() throws Throwable {
@@ -287,6 +188,6 @@ public class listboxstepdefinition {
 			System.out.println("All elements have been removed");
 		}
 		
-		driver.close();
+//		driver.close();
 	}
 }

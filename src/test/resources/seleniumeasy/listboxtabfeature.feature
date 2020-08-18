@@ -1,17 +1,17 @@
-
+#@otherstab
   
 Feature: Test List Box
-#
-  #Scenario: 01 list box tab
-    #Given I login to the application
-    #And I click on list box tab
-    #Then I verify three drop down values are getting displayed
+
+  Scenario: 01 list box tab
+    Given I login to the application
+    And I click on list box tab
+    Then I verify three drop down values are getting displayed
 
   Scenario Outline: 02 bootstrap list box tab
     Given I login to the application
     And I click on list box tab
     And I click on bootstrap list box
-    When I select <message> from list
+    When I select <message> from a list
     And I press the shift elements button
     Then I verify the <message> are shifted
 
@@ -24,8 +24,8 @@ Feature: Test List Box
     Given I login to the application
     And I click on list box tab
     And I click on data list filter tab
-    And I enter a value <random>
-    Then I verify the results<random> are shown
+    And I enter a value <random> in box
+    Then I verify the results <random> are shown
 
     Examples: 
       | random            |
@@ -38,12 +38,12 @@ Feature: Test List Box
     Given I login to the application
     And I click on list box tab
     And I click on JQuery
-    And I select a result <option>
+    And I select a result <option> from list
     And I click on Add button
     Then I verify result <option> is added
-    When I select a result<option>
+    When I select a result <option> from second list
     And I click on remove
-    Then I verify the element <option>is removed
+    Then I verify the element <option> is removed
 
     Examples: 
       | option   |
